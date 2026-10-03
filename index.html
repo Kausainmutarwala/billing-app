@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mega Infra Project - Billing</title>
+<link rel="icon" href="assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <img id="hLogo" src="assets/logo.png" alt="" onerror="this.style.display='none'">
+  <div><h1 id="hName">Mega Infra Project</h1><p id="hSub"></p></div>
+</header>
+<main>
+  <section id="bill" class="tab on card">
+    <h2>Bill <span id="bNo"></span></h2>
+    <div class="grid2">
+      <div><label for="bDate">Date</label><input id="bDate" type="date"></div>
+      <div><label for="bStatus">Payment</label><select id="bStatus"><option>Pending</option><option>Paid</option></select></div>
+    </div>
+    <label for="bCust">Customer / Company</label><input id="bCust">
+    <div class="grid2">
+      <div><label for="bPhone">Phone</label><input id="bPhone" inputmode="tel"></div>
+      <div><label for="bSite">Site / Address</label><input id="bSite"></div>
+    </div>
+    <label class="chk"><input type="checkbox" id="bShowAmt"> Rate aur amount dikhao</label>
+    <label class="chk"><input type="checkbox" id="bSign"> Signature ki jagah dikhao</label>
+    <div id="secBox"></div>
+    <button id="addSec" class="ghost nm0">+ Add room / section</button>
+    <div class="grid2">
+      <div><label for="bDisc">Discount (Rs)</label><input id="bDisc" type="number" step="any" min="0" inputmode="decimal"></div>
+      <div><label for="bAdv">Advance (Rs)</label><input id="bAdv" type="number" step="any" min="0" inputmode="decimal"></div>
+    </div>
+    <div id="tot"></div>
+    <button id="bSave">Save bill</button>
+    <button id="bPrint" class="ghost">Print / PDF</button>
+    <button id="bNew" class="ghost">New bill</button>
+    <span id="bMsg" class="ok"></span>
+  </section>
+
+  <section id="items" class="tab card">
+    <h2>Saved items and rates</h2>
+    <input id="iSearch" placeholder="Search item...">
+    <ul class="items" id="itemList"></ul>
+    <h2 id="formTitle" style="margin-top:22px">Add item</h2>
+    <label for="iName">Item name</label>
+    <input id="iName" list="itemSuggest" autocomplete="off">
+    <label for="iUnit">Unit</label><select id="iUnit"></select>
+    <label for="iRate">Rate (Rs)</label>
+    <input id="iRate" type="number" step="any" min="0" inputmode="decimal">
+    <button id="iSave">Add item</button><button id="iCancel" class="ghost" hidden>Cancel</button>
+    <p class="note" id="iMsg"></p>
+  </section>
+
+  <section id="history" class="tab card">
+    <h2>History</h2>
+    <input id="hSearch" placeholder="Search bill no, customer, site, Paid / Pending...">
+    <ul class="items hist" id="hList"></ul>
+  </section>
+
+  <section id="settings" class="tab card">
+    <h2>Company details</h2>
+    <p class="note">Ye bill ke header pe dikhega.</p>
+    <label for="sName">Company name</label><input id="sName">
+    <label for="sPhone">Phone</label><input id="sPhone" inputmode="tel">
+    <label for="sAddr">Address</label><textarea id="sAddr" rows="3"></textarea>
+    <label for="sUpi">UPI ID (optional)</label><input id="sUpi">
+    <button id="save">Save details</button><span id="msg" class="ok"></span>
+    <h2 style="margin-top:28px">Backup / Restore</h2>
+    <p class="note">Data is device ke browser mein hai. Regular backup download karke rakho.</p>
+    <button id="bkDown">Download backup</button><span id="bkMsg" class="ok"></span>
+    <label for="bkFile">Restore from backup file</label>
+    <input id="bkFile" type="file" accept="application/json,.json">
+  </section>
+</main>
+
+<nav>
+  <a href="#bill" class="on">Bill</a>
+  <a href="#items">Items</a>
+  <a href="#history">History</a>
+  <a href="#settings">Settings</a>
+</nav>
+<datalist id="itemSuggest"></datalist>
+<div id="printArea"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/items.js"></script>
+<script src="js/bill.js"></script>
+<script src="js/history.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/backup.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
